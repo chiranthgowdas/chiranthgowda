@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health is wealth</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:yellow;
+        }
+        img {
+            max-width:50%; /* Ensure the image doesn't exceed the width of its container */
+            height:20px; /* Maintain aspect ratio */
+            margin-top:200px; /* Add some space above the image */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color:lightblue;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color:lightyellow;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color:white;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .result {
+            margin-top: 20px;
+            background-color:lightpink;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        .result h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+<img src="myabs.jpg" alt="myabs">
+<div class="container">
+    <h1>BMI and Calorie Calculator</h1>
+    <label for="name">name:</label>
+    <input type="alphabet" id="name" placeholder="Enter your good name"required>
+    <label for="weight">Weight (kg):</label>
+    <input type="number" id="weight" placeholder="Enter your weight" required>
+    <label for="height">Height (cm):</label>
+    <input type="number" id="height" placeholder="Enter your height" required>
+    <label for="age">Age:</label>
+    <input type="number" id="age" placeholder="Enter your age" required>
+    <label for="activity">Activity Level:</label>
+    <select id="activity">
+        <option value="1.2">Sedentary (little to no exercise)</option>
+        <option value="1.375">Lightly active (light exercise/sports 1-3 days/week)</option>
+        <option value="1.55">Moderately active (moderate exercise/sports 3-5 days/week)</option>
+        <option value="1.725">Very active (hard exercise/sports 6-7 days a week)</option>
+        <option value="1.9">Extra active (very hard exercise/sports & physical job)</option>
+    </select>
+    <button onclick="calculateBMI()">Calculate</button>
+    <div class="result" id="result">
+    </div>
+</div>
+<script>
+    function calculateBMI() {
+        var weight = parseFloat(document.getElementById('weight').value);
+        var height = parseFloat(document.getElementById('height').value) / 100; // convert to meters
+        var age = parseInt(document.getElementById('age').value);
+        var activity = parseFloat(document.getElementById('activity').value);
+        var bmi = weight / (height * height);
+        var bmr = 10 * weight + 6.25 * (height * 100) - 5 * age + 5;
+        var dailyCalories = bmr * activity;
+
+        var resultElement = document.getElementById('result');
+        resultElement.innerHTML = "<h2>Your Results</h2>";
+        resultElement.innerHTML += "<p><strong>BMI:</strong> " + bmi.toFixed(2) + "</p>";
+        resultElement.innerHTML += "<p><strong>Daily Calories Intake:</strong> " + dailyCalories.toFixed(2) + " kcal</p>";
+    }
+</script>
+</body>
+</html>
